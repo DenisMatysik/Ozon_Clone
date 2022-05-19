@@ -9,3 +9,9 @@ export const categoryFilter = (goods, value)=>{
         return goodsItem.category === value;
     })
 }
+
+export const priceyFilter = (goods, value)=>{
+    return goods.filter((goodsItem) => {
+        return goodsItem.price ;
+    })
+}
