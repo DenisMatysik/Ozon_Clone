@@ -10,8 +10,14 @@ export const categoryFilter = (goods, value)=>{
     })
 }
 
-export const priceyFilter = (goods, value)=>{
+export const priceyFilterMin = (goods, value)=>{
     return goods.filter((goodsItem) => {
-        return goodsItem.price ;
+        return goodsItem.price >= value ;
+    })
+}
+
+export const priceyFilterMax = (goods, value)=>{
+    return goods.filter((goodsItem) => {
+        return goodsItem.price <= value ;
     })
 }
