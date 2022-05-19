@@ -21,3 +21,9 @@ export const priceyFilterMax = (goods, value)=>{
         return goodsItem.price <= value ;
     })
 }
+
+export const priceFilter = (goods, valueMin = 0, valueMax = 0)=>{
+    return goods.filter((goodsItem) => {
+        return goodsItem.price >= valueMin &&goodsItem.price <= valueMax;
+    })
+}
