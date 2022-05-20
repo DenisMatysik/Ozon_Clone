@@ -74,7 +74,7 @@ const cart = ()=>{
             renderCart([]);
             cartTotal.textContent = 0;
             count = 0;
-            counter.innerHTML = count
+            counter.innerHTML = count;
         })
     })
 }
