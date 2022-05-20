@@ -8,7 +8,12 @@ const cart = ()=>{
     const cartTotal = cartModal.querySelector(".cart-total > span");
     const goodsWrapper = document.querySelector(".goods");
     const cartWrapper = cartModal.querySelector(".cart-wrapper");
-    const cartSendBtn = cartModal.querySelector(".cart-confirmr");
+    const cartSend = cartModal.querySelector(".cart-confirm");
+    const counter = cartBtn.querySelector(".counter");
+    // счётчик
+    const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+    let count = cart.length ;
+    counter.innerHTML = count
 
     const openCart = ()=>{
         const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
@@ -35,8 +40,10 @@ const cart = ()=>{
             const goodItem = goods.find((item) => {
                 return item.id === +key
             })
-            cart.push(goodItem)
-            localStorage.setItem("cart", JSON.stringify(cart))
+            cart.push(goodItem);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            count++;
+            counter.innerHTML = count
         }
     })
 
@@ -48,7 +55,9 @@ const cart = ()=>{
             const index = cart.findIndex(((item) => {
                 return item.id === +key
             }))
-            cart.splice(index,1)
+            cart.splice(index,1);
+            count--;
+            counter.innerHTML = count
             renderCart(cart);
                 cartTotal.textContent = cart.reduce((sum, goodItem) => {
                     return sum + goodItem.price
@@ -57,9 +66,16 @@ const cart = ()=>{
         }
     })
 
-    cartSendBtn.addEventListener("click", ()=>{
-        const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-        postData(cart)
+    cartSend.addEventListener("click", ()=>{
+        const cart = localStorage.getItem("cart") ? 
+        JSON.parse(localStorage.getItem("cart")) : [];
+        postData(cart).then(()=>{
+            localStorage.removeItem("cart");
+            renderCart([]);
+            cartTotal.textContent = 0;
+            count = 0;
+            counter.innerHTML = count
+        })
     })
 }
 export default cart
