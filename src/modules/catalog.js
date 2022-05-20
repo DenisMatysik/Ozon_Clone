@@ -1,6 +1,6 @@
 import getData from "./getData";
 import renderGoods from "./renderGoods"
-import {categoryFilter} from "./filter"
+import {categoryFilter, allFilter} from "./filter"
 
 const catalog =()=>{
     const btnCatalog = document.querySelector(".catalog-button > button");
@@ -15,9 +15,15 @@ const catalog =()=>{
     catalogModalItems.forEach((item)=>{
         item.addEventListener("click", ()=>{
             const text = item.textContent;
-            getData().then((data) => {
+            if(text === "Все товары"){
+                getData().then((data) => {
+                    renderGoods(allFilter(data))
+            })
+            } else {
+                getData().then((data) => {
                 renderGoods(categoryFilter(data, text))
-        })
+            })
+            }
         })
     })
 }

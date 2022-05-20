@@ -10,6 +10,12 @@ export const categoryFilter = (goods, value)=>{
     })
 }
 
+export const allFilter = (goods)=>{
+    return goods.filter((goodsItem) => {
+        return goodsItem
+    })
+}
+
 export const priceFilter = (goods, valueMin, valueMax)=>{
     return goods.filter((items)=>{
         if (valueMin==="" && valueMax===""){
