@@ -1,5 +1,5 @@
 import getData from "./getData";
-import renderGoods from "./renderCart"
+import renderGoods from "./renderGoods"
 import { priceFilter, hotSaleFilter} from "./filter";
 
 const price = ()=>{
@@ -30,6 +30,8 @@ const price = ()=>{
             renderGoods(priceFilter(hotSaleFilter(data, checkBoxInput.checked), minValPrice.value, maxValPrice.value))
     })
     })
+
 }
+
 
 export default price;
