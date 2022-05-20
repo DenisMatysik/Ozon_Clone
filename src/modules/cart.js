@@ -1,3 +1,5 @@
+import renderCart from "./renderCart";
+
 const cart = ()=>{
     const cartBtn = document.getElementById("cart");
     const cartModal = document.querySelector(".cart");
@@ -5,7 +7,9 @@ const cart = ()=>{
     const goodsWrapper = document.querySelector(".goods")
 
     const openCart = ()=>{
+        const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
         cartModal.style.display = "flex";
+        renderCart(cart)
     }
 
     const closeCart = ()=>{
