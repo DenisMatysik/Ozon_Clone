@@ -1,11 +1,7 @@
 const renderGoods = (goods)=> {
-
     const goodsWrapper = document.querySelector(".goods");
-
     localStorage.setItem("goods", JSON.stringify(goods))
-
     goodsWrapper.innerHTML = "";
-
     goods.forEach((goodsItem) => {
         goodsWrapper.insertAdjacentHTML("beforeend", `
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">

@@ -30,8 +30,6 @@ const price = ()=>{
             renderGoods(priceFilter(hotSaleFilter(data, checkBoxInput.checked), minValPrice.value, maxValPrice.value))
     })
     })
-
 }
-
 
 export default price;
