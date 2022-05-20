@@ -10,20 +10,16 @@ export const categoryFilter = (goods, value)=>{
     })
 }
 
-export const priceyFilterMin = (goods, value)=>{
-    return goods.filter((goodsItem) => {
-        return goodsItem.price >= value ;
-    })
-}
-
-export const priceyFilterMax = (goods, value)=>{
-    return goods.filter((goodsItem) => {
-        return goodsItem.price <= value ;
-    })
-}
-
 export const priceFilter = (goods, valueMin = 0, valueMax = 0)=>{
-    return goods.filter((goodsItem) => {
-        return goodsItem.price >= valueMin &&goodsItem.price <= valueMax;
+    return goods.filter((goodsItem)=>{
+        if (valueMin==="" && valueMax===""){
+            return goodsItem
+        } else if(valueMin !=="" && valueMax !==""){
+            return goodsItem.price > +valueMin && goodsItem.price < +valueMax
+        } else if (valueMin !=="" && valueMax ===""){
+            return goodsItem.price > +valueMin
+        } else if (valueMin ==="" && valueMax !==""){
+            return goodsItem.price < +valueMax
+        }
     })
 }

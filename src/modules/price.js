@@ -1,41 +1,23 @@
 import getData from "./getData";
 import renderGoods from "./renderGoods"
-import { priceFilter,priceyFilterMax,priceyFilterMin } from "./filter";
+import { priceFilter} from "./filter";
 
 const price = ()=>{
     const minValPrice = document.getElementById("min");
     const maxValPrice = document.getElementById("max");
-    let priceObj = {
-        minPrice: 0,
-        maxPrice: 0,
-    }
 
-    minValPrice.addEventListener("input", (event)=>{
-        const minVal = event.target.value;
-        priceObj.minPrice = minVal;
+    minValPrice.addEventListener("input", ()=>{
         getData().then((data) => {
-            renderGoods(priceyFilterMin(data, priceObj.minPrice))
+            renderGoods(priceFilter(data, minValPrice.value, maxValPrice.value))
     })
-        showPriceRange();
     })
 
-    maxValPrice.addEventListener("input", (event)=>{
-        const maxVal = event.target.value;
-        priceObj.maxPrice = maxVal;
+    maxValPrice.addEventListener("input", ()=>{
         getData().then((data) => {
-            renderGoods(priceyFilterMax(data, priceObj.maxPrice))
+            renderGoods(priceFilter(data, minValPrice.value, maxValPrice.value))
     })
-        showPriceRange();
     })
 
-    const showPriceRange=()=>{
-        if(priceObj.minPrice != 0 && priceObj.maxPrice != 0){
-            getData().then((data) => {
-                renderGoods(priceFilter(data, priceObj.minPrice, priceObj.maxPrice))
-        })
-    }
-
-    }
 }
 
 
