@@ -10,7 +10,7 @@ export const categoryFilter = (goods, value)=>{
     })
 }
 
-export const priceFilter = (goods, valueMin = 0, valueMax = 0)=>{
+export const priceFilter = (goods, valueMin, valueMax)=>{
     return goods.filter((goodsItem)=>{
         if (valueMin==="" && valueMax===""){
             return goodsItem
@@ -22,4 +22,14 @@ export const priceFilter = (goods, valueMin = 0, valueMax = 0)=>{
             return goodsItem.price < +valueMax
         }
     })
+}
+
+export const hotSaleFilter = (goods, value)=>{
+    return goods.filter((goodsItem) => {
+            if (value){
+                return goodsItem.sale === true
+            } else {
+                return goodsItem
+            }
+        })
 }
